@@ -1,10 +1,9 @@
 import React from "react";
 
-import PhotoListItem from "./components/PhotoListItem";
 import PhotoList from "components/PhotoList";
+import TopicList from "components/TopicList";
+import TopNavigation from "components/TopNavigationBar";
 import "./App.scss";
-
-// const photos = new Array(3).fill(sampleDataForPhotoListItem);
 
 const sampleDataForPhotoList = [
   {
@@ -60,13 +59,30 @@ const sampleDataForPhotoList = [
   },
 ];
 
+const sampleDataForTopicList = [
+  {
+    id: "1",
+    slug: "topic-1",
+    title: "Nature",
+  },
+  {
+    id: "2",
+    slug: "topic-2",
+    title: "Travel",
+  },
+  {
+    id: "3",
+    slug: "topic-3",
+    title: "People",
+  },
+];
+
 const App = () => {
   return (
     <div className="App">
-      {/* {photos.map((data, index) => (
-        <PhotoListItem key={index} {...data} />
-      ))} */}
-      <PhotoList DataForPhotoList={sampleDataForPhotoList} />
+      <TopNavigation />
+      <TopicList dataForTopicList={sampleDataForTopicList} />
+      <PhotoList dataForPhotoList={sampleDataForPhotoList} />
     </div>
   );
 };
