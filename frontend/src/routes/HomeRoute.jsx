@@ -1,11 +1,35 @@
-import React from 'react';
+import React from "react";
+import TopNavigation from "components/TopNavigationBar";
+import PhotoList from "components/PhotoList";
+import PhotoDetailsModal from "./PhotoDetailsModal";
+import "../styles/HomeRoute.scss";
+import { useState } from "react";
 
-import '../styles/HomeRoute.scss';
+const HomeRoute = ({ topicData, photoData, onPhotoClick }) => {
+  const [likedPhotos, setLikedPhotos] = useState([]);
 
-const HomeRoute = () => {
+  const handlePhotoLikeToggle = (photoId) => {
+    if (likedPhotos.includes(photoId)) {
+      setLikedPhotos(likedPhotos.filter((id) => id !== photoId));
+    } else {
+      setLikedPhotos([...likedPhotos, photoId]);
+    }
+  };
+
+  const handlePhotoClick = (photo) => {
+    if (onPhotoClick) {
+      onPhotoClick(photo);
+    }
+  };
+
   return (
     <div className="home-route">
-      {/* Insert React */}
+      <TopNavigation topicData={topicData} likedPhotos={likedPhotos} />
+      <PhotoList
+        dataForPhotoList={photoData}
+        onLikeToggle={handlePhotoLikeToggle}
+        onPhotoClick={handlePhotoClick}
+      />
     </div>
   );
 };

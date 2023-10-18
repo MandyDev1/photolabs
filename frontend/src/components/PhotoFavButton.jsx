@@ -6,7 +6,8 @@ import "../styles/PhotoFavButton.scss";
 const PhotoFavButton = ({ onLikeToggle, photoId }) => {
   const [isActive, setIsActive] = useState(false);
 
-  const handleIconClick = useCallback(() => {
+  const handleIconClick = useCallback((e) => {
+    e.stopPropagation();
     setIsActive(!isActive);
     onLikeToggle(photoId);
   }, [isActive, onLikeToggle, photoId]);

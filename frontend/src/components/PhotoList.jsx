@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ dataForPhotoList, onLikeToggle }) => {
+const PhotoList = ({ dataForPhotoList, onLikeToggle, onPhotoClick }) => {
   return (
     <div className="photo-list">
       {dataForPhotoList.map((photo) => (
@@ -15,6 +15,7 @@ const PhotoList = ({ dataForPhotoList, onLikeToggle }) => {
           username={photo.user.username}
           profile={photo.user.profile}
           onLikeToggle={onLikeToggle}
+          onPhotoClick={onPhotoClick}
         />
       ))}
     </div>
