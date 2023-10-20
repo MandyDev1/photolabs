@@ -1,7 +1,6 @@
 import React from "react";
 import TopNavigation from "components/TopNavigationBar";
 import PhotoList from "components/PhotoList";
-import PhotoDetailsModal from "./PhotoDetailsModal";
 import "../styles/HomeRoute.scss";
 import { useState } from "react";
 

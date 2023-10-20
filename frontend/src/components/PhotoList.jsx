@@ -4,16 +4,13 @@ import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = ({ dataForPhotoList, onLikeToggle, onPhotoClick }) => {
+  console.log("Photolist:", dataForPhotoList);
   return (
     <div className="photo-list">
       {dataForPhotoList.map((photo) => (
         <PhotoListItem
           key={photo.id}
-          id={photo.id}
-          location={photo.location}
-          imageSource={photo.urls.regular}
-          username={photo.user.username}
-          profile={photo.user.profile}
+          photo={photo}
           onLikeToggle={onLikeToggle}
           onPhotoClick={onPhotoClick}
         />
