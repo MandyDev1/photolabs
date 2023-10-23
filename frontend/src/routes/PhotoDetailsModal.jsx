@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
@@ -14,9 +13,11 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, likedPhotos, onFavButtonCli
 
   return (
     <div className="photo-details-modal">
+
       <button className="photo-details-modal__close-button" onClick={onClose}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
+
       <div className="photo-details-modal__images">
         <PhotoFavButton isFavIconActive={likedPhotos.includes(selectedPhoto.id)} onFavButtonClick={() => onFavButtonClick(selectedPhoto.id)} />
         <img
@@ -37,6 +38,7 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, likedPhotos, onFavButtonCli
             {selectedPhoto.location.city} {selectedPhoto.location.country}
           </p>
         </div>
+
         <h3>Similar Photos</h3>
         <PhotoList
           photos={Object.values(selectedPhoto.similarPhotos)}
