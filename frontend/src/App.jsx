@@ -13,8 +13,8 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        topicData={topics}
-        photoData={photos}
+        topics={topics}
+        photos={photos}
         onPhotoClick={(photo) => {
           setSelectedPhoto(photo);
           setIsModalOpen(true);

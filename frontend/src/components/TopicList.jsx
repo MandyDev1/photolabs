@@ -2,10 +2,10 @@ import React from "react";
 import TopicListItem from "./TopicListItem";
 import "../styles/TopicList.scss";
 
-const TopicList = ({ dataForTopicList }) => {
+const TopicList = ({ topics }) => {
   return (
     <div className="top-nav-bar__topic-list">
-      {dataForTopicList.map((topic) => (
+      {topics.map((topic) => (
         <TopicListItem
           key={topic.id}
           slug={topic.slug}

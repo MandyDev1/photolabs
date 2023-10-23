@@ -39,7 +39,7 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto }) => {
         </div>
         <h3>Similar Photos</h3>
         <PhotoList
-          dataForPhotoList={Object.values(selectedPhoto.similarPhotos)}
+          photos={Object.values(selectedPhoto.similarPhotos)}
         />
       </div>
     </div>

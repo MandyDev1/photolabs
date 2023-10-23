@@ -3,11 +3,11 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ dataForPhotoList, onLikeToggle, onPhotoClick }) => {
-  console.log("Photolist:", dataForPhotoList);
+const PhotoList = ({ photos, onLikeToggle, onPhotoClick }) => {
+  console.log("Photolist:", photos);
   return (
     <div className="photo-list">
-      {dataForPhotoList.map((photo) => (
+      {photos.map((photo) => (
         <PhotoListItem
           key={photo.id}
           photo={photo}

@@ -4,7 +4,7 @@ import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 import { useState } from "react";
 
-const HomeRoute = ({ topicData, photoData, onPhotoClick }) => {
+const HomeRoute = ({ topics, photos, onPhotoClick }) => {
   const [likedPhotos, setLikedPhotos] = useState([]);
 
   const handlePhotoLikeToggle = (photoId) => {
@@ -23,9 +23,9 @@ const HomeRoute = ({ topicData, photoData, onPhotoClick }) => {
 
   return (
     <div className="home-route">
-      <TopNavigation topicData={topicData} likedPhotos={likedPhotos} />
+      <TopNavigation topics={topics} likedPhotos={likedPhotos} />
       <PhotoList
-        dataForPhotoList={photoData}
+        photos={photos}
         onLikeToggle={handlePhotoLikeToggle}
         onPhotoClick={handlePhotoClick}
       />
