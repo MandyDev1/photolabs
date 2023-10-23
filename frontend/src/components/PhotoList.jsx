@@ -3,15 +3,15 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ photos, onLikeToggle, onPhotoClick }) => {
-  console.log("Photolist:", photos);
+const PhotoList = ({ photos, likedPhotos, onFavButtonClick, onPhotoClick }) => {
   return (
     <div className="photo-list">
       {photos.map((photo) => (
         <PhotoListItem
           key={photo.id}
           photo={photo}
-          onLikeToggle={onLikeToggle}
+          isFavIconActive={likedPhotos.includes(photo.id)}
+          onFavButtonClick={onFavButtonClick}
           onPhotoClick={onPhotoClick}
         />
       ))}

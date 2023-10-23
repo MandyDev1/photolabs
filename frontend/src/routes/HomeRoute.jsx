@@ -4,30 +4,25 @@ import PhotoList from "components/PhotoList";
 import "../styles/HomeRoute.scss";
 import { useState } from "react";
 
-const HomeRoute = ({ topics, photos, onPhotoClick }) => {
-  const [likedPhotos, setLikedPhotos] = useState([]);
+const HomeRoute = ({ topics, photos, likedPhotos, onPhotoClick, onFavButtonClick }) => {
+  // const [likedPhotos, setLikedPhotos] = useState([]);
 
-  const handlePhotoLikeToggle = (photoId) => {
-    if (likedPhotos.includes(photoId)) {
-      setLikedPhotos(likedPhotos.filter((id) => id !== photoId));
-    } else {
-      setLikedPhotos([...likedPhotos, photoId]);
-    }
-  };
-
-  const handlePhotoClick = (photo) => {
-    if (onPhotoClick) {
-      onPhotoClick(photo);
-    }
-  };
+  // const onFavButtonClick = (photoId) => {
+  //   if (likedPhotos.includes(photoId)) {
+  //     setLikedPhotos(likedPhotos.filter((id) => id !== photoId));
+  //   } else {
+  //     setLikedPhotos([...likedPhotos, photoId]);
+  //   }
+  // };
 
   return (
     <div className="home-route">
       <TopNavigation topics={topics} likedPhotos={likedPhotos} />
       <PhotoList
         photos={photos}
-        onLikeToggle={handlePhotoLikeToggle}
-        onPhotoClick={handlePhotoClick}
+        onFavButtonClick={onFavButtonClick}
+        onPhotoClick={onPhotoClick}
+        likedPhotos={likedPhotos}
       />
     </div>
   );
