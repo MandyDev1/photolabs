@@ -13,8 +13,8 @@ const TopicListItem = (props) => {
   
   return (
     <div className="topic-list__item">
-      <h3>{slug}</h3>
-      <p>{title}</p>
+      {/* <h3>{slug}</h3> */}
+      <h3>{title}</h3>
     </div>
   );
 };
