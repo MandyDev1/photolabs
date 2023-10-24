@@ -4,7 +4,7 @@ import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
 
-const PhotoDetailsModal = ({ onClose, selectedPhoto, likedPhotos, onFavButtonClick }) => {
+const PhotoDetailsModal = ({ onClosePhotoDetailsModal, selectedPhoto, likedPhotos, onFavButtonClick }) => {
   console.log("Selected photo data:", selectedPhoto, likedPhotos);
 
   if (!selectedPhoto) {
@@ -14,7 +14,7 @@ const PhotoDetailsModal = ({ onClose, selectedPhoto, likedPhotos, onFavButtonCli
   return (
     <div className="photo-details-modal">
 
-      <button className="photo-details-modal__close-button" onClick={onClose}>
+      <button className="photo-details-modal__close-button" onClick={onClosePhotoDetailsModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
 
