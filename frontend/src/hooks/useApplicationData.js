@@ -49,20 +49,23 @@ const useApplicationData = () => {
   useEffect(() => {
     fetch("/api/photos")
       .then((response) => response.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+      .catch(error => console.log(error));
   }, []);
 
   useEffect(() => {
     fetch("/api/topics")
       .then((response) => response.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
+      .catch(error => console.log(error));
   }, []);
 
   useEffect(() => {
     if (state.selectedTopicId) {
       fetch(`/api/topics/photos/${state.selectedTopicId}`)
         .then((response) => response.json())
-        .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+        .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+        .catch(error => console.log(error));
     }
   }, [state.selectedTopicId]);
 
