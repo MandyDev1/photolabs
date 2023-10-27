@@ -5,7 +5,7 @@ import PhotoList from "components/PhotoList";
 import PhotoFavButton from "components/PhotoFavButton";
 
 const PhotoDetailsModal = ({ onClosePhotoDetailsModal, selectedPhoto, likedPhotos, onFavButtonClick }) => {
-  console.log("Selected photo data:", selectedPhoto, likedPhotos);
+  console.log("Selected photo data:", selectedPhoto);
 
   if (!selectedPhoto) {
     return null;
@@ -41,7 +41,7 @@ const PhotoDetailsModal = ({ onClosePhotoDetailsModal, selectedPhoto, likedPhoto
 
         <h3>Similar Photos</h3>
         <PhotoList
-          photos={Object.values(selectedPhoto.similarPhotos)}
+          photos={Object.values(selectedPhoto.similar_photos)}
           onFavButtonClick={onFavButtonClick}
           likedPhotos={likedPhotos}
         />

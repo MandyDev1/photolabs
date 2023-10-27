@@ -5,25 +5,27 @@ const initialState = {
   selectedPhoto: null,
   likedPhotos: [],
   photoData: [],
-  topicData: []
+  topicData: [],
+  selectedTopicId: null
 };
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
-  SELECT_PHOTO: 'SELECT_PHOTO',
+  SET_SELECTED_PHOTO: 'SET_SELECTED_PHOTO',
   CLOSE_MODAL: 'CLOSE_MODAL',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  SET_SELECTED_TOPIC: 'SET_SELECTED_TOPIC'
 };
 
-const reducer = function(state, action) {
+const reducer = function (state, action) {
   switch (action.type) {
   case ACTIONS.FAV_PHOTO_ADDED:
     return { ...state, likedPhotos: [...state.likedPhotos, action.payload.id] };
   case ACTIONS.FAV_PHOTO_REMOVED:
     return { ...state, likedPhotos: state.likedPhotos.filter(id => id !== action.payload.id) };
-  case ACTIONS.SELECT_PHOTO:
+  case ACTIONS.SET_SELECTED_PHOTO:
     return { ...state, isModalOpen: true, selectedPhoto: action.payload };
   case ACTIONS.CLOSE_MODAL:
     return { ...state, isModalOpen: !state.isModalOpen, selectedPhoto: null };
@@ -31,6 +33,8 @@ const reducer = function(state, action) {
     return { ...state, photoData: action.payload };
   case ACTIONS.SET_TOPIC_DATA:
     return { ...state, topicData: action.payload };
+  case ACTIONS.SET_SELECTED_TOPIC:
+    return { ...state, selectedTopicId: action.payload.id };
   default:
     throw new Error(
       `Tried to reduce with unsupported action type: ${action.type}`
@@ -54,6 +58,18 @@ const useApplicationData = () => {
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
   }, []);
 
+  useEffect(() => {
+    if (state.selectedTopicId) {
+      fetch(`/api/topics/photos/${state.selectedTopicId}`)
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+    }
+  }, [state.selectedTopicId]);
+
+
+  const onTopicClick = (topicId) => {
+    dispatch({ type: ACTIONS.SET_SELECTED_TOPIC, payload: { id: topicId } });
+  };
 
   const onFavButtonClick = (photoId) => {
     if (state.likedPhotos.includes(photoId)) {
@@ -64,7 +80,7 @@ const useApplicationData = () => {
   };
 
   const onPhotoClick = (photo) => {
-    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo });
+    dispatch({ type: ACTIONS.SET_SELECTED_PHOTO, payload: photo });
   };
 
   const onClosePhotoDetailsModal = () => {
@@ -77,6 +93,7 @@ const useApplicationData = () => {
     onFavButtonClick, // Function to set the favourite(liked) photos.
     onPhotoClick, // Function to open modal when the user selects a photo.
     onClosePhotoDetailsModal, // Function to close the modal.
+    onTopicClick // Handler function triggered when a user clicks on a specific topic to fetch associated photos.
   };
 };
 

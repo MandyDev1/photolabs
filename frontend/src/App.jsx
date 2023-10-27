@@ -9,7 +9,8 @@ const App = () => {
     state,
     onFavButtonClick,
     onPhotoClick,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
+    onTopicClick
   } = useApplicationData();
 
   return (
@@ -20,6 +21,7 @@ const App = () => {
         likedPhotos={state.likedPhotos}
         onPhotoClick={onPhotoClick}
         onFavButtonClick={onFavButtonClick}
+        onTopicClick={onTopicClick}
       />
       {state.isModalOpen && (
         <PhotoDetailsModal
